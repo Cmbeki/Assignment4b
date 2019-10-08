@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Comp20: Assignment 4b</title>
+	
+</head>
+<style>
+	body {
+		background: #F05141;
+	}
+	h2 b {
+		border: 3px #FFFFFF;
+	}
+</style>
+
+<header>
+	<h1 align="center">Joe's Hotdog Stand</h1>
+	<h4 align="center"><em>World Famous Hotdogs and Fries!</em></h4>
+</header>
+
+<body>
+	<h2>Order Form</h2><hr>
+	<form>
+	<label>Hotdogs 		<em>$3.25</em> x</label>
+	<input type="number" id='numDogs' min="0" max="99"><br><br>
+	<label>French Fries 	<em>$2.00</em> x</label>
+	<input type="number" id='numFries' min="0" max="99"><br><br>
+	<label>Drinks 			<em>$1.50</em> x</label>
+	<input type="number" id='numDrinks' min="0" max="99"><br><br>
+	<input type="Submit" value='Order' onclick="displayOrder()">
+	<input type="reset">
+	</form>
+	<hr>
+<script language="javascript">
+		function displayOrder(){
+			var q = new Array(document.getElementById('numDogs').value,
+					document.getElementById('numFries').value,
+					document.getElementById('numDrinks').value);
+			var p = new Array(3.25, 2.00, 1.50);
+			var prediscount = (q[0]*p[0])+(q[1]*p[1])+(q[2]*p[2]);
+			var cost = prediscount;
+			var discount = 0;
+			if (prediscount>=20) {
+				cost = prediscount*0.90;
+				cost = Math.round(100*cost)/100;
+				discount = prediscount*0.10;
+				discount = Math.round(100*discount)/100;
+			}
+			var tax = cost*0.0625;
+			tax = Math.round(100*tax)/100;
+			var total = cost+tax;
+
+			
+			alert("Order Complete!\n"+
+				q[0]+" x Hot Dogs\n"+
+				q[1]+" x Fries\n"+
+				q[2]+" x Drinks\n"+
+				"Subtotal = $" + prediscount+"\n"+
+				"Discount = (" + discount+")\n"+
+				"Total w/ Discount = $"+(prediscount-discount)+"\n"+
+				"Meal Tax(6.25%) = " + tax+"\n"+
+				"Total = $" + total); 
+		}
+	</script>
+	<h2><b><img src="hotdogs.jpg" width=40% align="left"></b></h2>
+	<h2><b><img src="fries.jpg" width=40% align="right"></b></h2>
+</body>
+</html>
